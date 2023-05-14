@@ -33,3 +33,41 @@ variable "database_subnet_cidr" {
 variable "database_subnet_names" {
   default = ["timing-database-1a","timing-database-1b"]
 }
+
+variable "rds_security_group_name" {
+  default = "timing"
+}
+variable "rds_security_group_description" {
+  default = "This security group is to attach timing rds"
+  
+}
+variable "ingress_cidr" {
+default = []
+}
+
+variable "allocated_storage" {
+    default = "10"
+}
+variable "db_name" {
+  default = "timing"
+}
+variable "instance_type" {
+  default = "db.t2.micro"
+}
+variable "identifier" {
+  default = "timing"
+}
+variable "engine" {
+  default = "mysql"
+}
+variable "engine_version" {
+  default = "8.0.32"
+}
+variable "rds_username" {
+  default = "phani"
+}
+
+variable "rds_secret_srn" {
+  default = "arn:aws:secretsmanager:us-east-1:347554562486:secret:timing/rds-password-secret-uuixGE"
+  
+}
