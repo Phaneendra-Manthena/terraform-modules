@@ -6,3 +6,8 @@ output "db_subnet_group_name" {
     value = aws_db_subnet_group.database.name
   
 }
+
+output "private_subnet_ids" {
+  description = "List of Private subnet ids"
+  value = aws_subnet.private[*].id
+}
