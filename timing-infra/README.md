@@ -9,4 +9,4 @@ public_subnet_tags(optional) - User should provide
 public_subnet_names(Required) - User should provide public subnet names same as they provided subnet CIDR
 igw_tags(Optional)
 public_route_table_tags(Optional)
-public_route_table_name(Required)
+public_route_table_name(Required)  eee
