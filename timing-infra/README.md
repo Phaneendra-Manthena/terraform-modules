@@ -10,3 +10,6 @@ public_subnet_names(Required) - User should provide public subnet names same as 
 igw_tags(Optional)
 public_route_table_tags(Optional)
 public_route_table_name(Required)
+
+
+inputs
