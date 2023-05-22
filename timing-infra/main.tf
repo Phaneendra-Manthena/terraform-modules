@@ -65,7 +65,8 @@ module "vpc" {
     source = "../modules/alb"
     vpc_id = local.vpc_id
     app_alb_name = var.app_alb_name
-    private_subnet_ids = local.private_subnet_ids
+    # private_subnet_ids = local.private_subnet_ids
+    public_subnet_ids = local.public_subnet_ids
     app_alb_security_group_id = [local.app_alb_security_group_id]
     create_security_group = var.create_security_group
     alb_name_prefix = var.alb_name_prefix
@@ -79,6 +80,23 @@ module "vpc" {
     alb_unhealthy_threshold = var.alb_unhealthy_threshold
     alb_listner_port = var.alb_listner_port
     tags = var.tags
-
-
   }
+#Route 53    #api.awsphani.tk
+module "records" {
+  source  = "terraform-aws-modules/route53/aws//modules/records"
+  version = "~> 2.0"
+
+  zone_name = var.zone_name
+
+  records = [
+    {
+      name    = var.api_alb_record_name
+      type    = "A"
+      alias   = {
+        name    = local.api_app_lb_dns_name
+        zone_id = local.api_alb_zone_id
+      }
+    }
+  ]
+}
+  

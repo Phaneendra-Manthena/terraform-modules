@@ -145,3 +145,10 @@ variable "app_alb_tags" {
   type = map
   default = {}
 }
+variable "zone_name" {
+  default = "awsphani.tk"
+  
+}
+variable "api_alb_record_name" {
+  default = "api"
+}

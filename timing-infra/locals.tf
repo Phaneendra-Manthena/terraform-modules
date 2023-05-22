@@ -9,4 +9,11 @@ locals {
   ecs_cluster_id = module.ecs_cluster.ecs_cluster_id
   app_alb_security_group_id = module.app_alb_sg.security_group_id
   private_subnet_ids = module.vpc.private_subnet_ids
+   public_subnet_ids = module.vpc.public_subnet_ids
+   rds_endpoint = module.rds.rds_endpoint
+   app_target_group_arn = module.alb.app_target_group_arn
+   api_app_lb_dns_name = module.alb.app_lb_dns_name
+   api_alb_zone_id = module.alb.lb_zone_id
+
 }
+   
