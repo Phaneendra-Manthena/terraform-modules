@@ -9,6 +9,10 @@ variable "private_subnet_ids" {
   type = set(string)
   default = []
 }
+variable "public_subnet_ids" {
+  type = set(string)
+  default = []
+}
 variable "app_alb_security_group_id" {
   type = list(string)
   default = []
@@ -52,4 +56,5 @@ variable "app_alb_tags" {
 }
 variable "tags" {
   type = map
+  default = {}
 }

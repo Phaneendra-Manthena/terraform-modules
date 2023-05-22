@@ -1,7 +1,7 @@
 resource "aws_lb" "main" {
   name               = var.app_alb_name
   load_balancer_type = "application"
-  subnets            = var.private_subnet_ids
+  subnets            = var.public_subnet_ids # temporary purpose later modify to private_subnet_ids
   security_groups    = var.app_alb_security_group_id
 
   tags = merge(var.tags, var.app_alb_tags)
