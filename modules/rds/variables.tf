@@ -11,9 +11,9 @@ variable "identifier" {
 variable "engine" {
   type = string
 }
-variable "engine_version" {
-  type = string
-}
+# variable "engine_version" {
+#   type = string
+# }
 variable "instance_type" {
   type = string
 }
@@ -30,6 +30,7 @@ variable "rds_secret_srn" {
     type = string
   
 }
+
 variable "tags" {
     type = map
   

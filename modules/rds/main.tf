@@ -3,12 +3,13 @@ resource "aws_db_instance" "main" {
      db_name = var.db_name
      identifier = var.identifier
      engine = var.engine
-     engine_version = var.engine_version
+    #  engine_version = var.engine_version
      instance_class = var.instance_type
      username = var.rds_username
      db_subnet_group_name = var.db_subnet_group_name
      password = random_password.password.result
      vpc_security_group_ids = var.vpc_security_group_ids
+     
      skip_final_snapshot = true
      tags = merge(
         var.tags,
