@@ -29,14 +29,25 @@ resource "aws_ssm_parameter" "rds_endpoint" {
   type  = "String"
   value = (local.rds_endpoint)
 }
+# resource "aws_ssm_parameter" "app_target_group_arn" {
+#   name  = "/timing/ec2/app_target_group_arns"
+#   type  = "StringList"
+#   value = join(",",[local.app_target_group_arn])
+# }
 resource "aws_ssm_parameter" "app_target_group_arn" {
   name  = "/timing/ec2/app_target_group_arns"
   type  = "StringList"
-  value = join(",",[local.app_target_group_arn])
+  value = join(",", module.app_alb.target_group_arns)
 }
+
 resource "aws_ssm_parameter" "rds_secret_srn" {
   name  = "/timing/rds/rds_secret_srn"
   type  = "String"
   value = var.rds_secret_srn
   
+}
+resource "aws_ssm_parameter" "ecs_cluster_id" {
+  name = "/timing/ecs/ecs_cluster_id"
+  type = "String"
+  value = module.ecs_cluster.ecs_cluster_id
 }

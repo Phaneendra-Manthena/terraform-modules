@@ -33,11 +33,12 @@ module "vpc" {
     db_name = var.db_name
     identifier = var.identifier
     engine = var.engine
-    engine_version = var.engine_version
+    # engine_version = var.engine_version
     instance_type = var.instance_type
     rds_username = var.rds_username
     db_subnet_group_name = local.db_subnet_group_name
-    vpc_security_group_ids = [local.rds_security_group_id ]
+    vpc_security_group_ids = [local.rds_security_group_id]
+    
     rds_secret_srn = var.rds_secret_srn
     tags = var.tags
     
@@ -61,26 +62,26 @@ module "vpc" {
   }
 
 
-  module "alb" {
-    source = "../modules/alb"
-    vpc_id = local.vpc_id
-    app_alb_name = var.app_alb_name
-    # private_subnet_ids = local.private_subnet_ids
-    public_subnet_ids = local.public_subnet_ids
-    app_alb_security_group_id = [local.app_alb_security_group_id]
-    create_security_group = var.create_security_group
-    alb_name_prefix = var.alb_name_prefix
-    alb_backend_protocol = var.alb_backend_protocol
-    alb_backend_port = var.alb_backend_port
-    alb_target_type = var.alb_target_type
-    alb_deregistration_delay = var.alb_deregistration_delay
-    alb_interval = var.alb_interval
-    alb_healthcheck_path = var.alb_healthcheck_path
-    alb_healthy_threshold = var.alb_healthy_threshold
-    alb_unhealthy_threshold = var.alb_unhealthy_threshold
-    alb_listner_port = var.alb_listner_port
-    tags = var.tags
-  }
+  # module "alb" {
+  #   source = "../modules/alb"
+  #   vpc_id = local.vpc_id
+  #   app_alb_name = var.app_alb_name
+  #   # private_subnet_ids = local.private_subnet_ids
+  #   public_subnet_ids = local.public_subnet_ids
+  #   app_alb_security_group_id = [local.app_alb_security_group_id]
+  #   create_security_group = var.create_security_group
+  #   alb_name_prefix = var.alb_name_prefix
+  #   alb_backend_protocol = var.alb_backend_protocol
+  #   alb_backend_port = var.alb_backend_port
+  #   alb_target_type = var.alb_target_type
+  #   alb_deregistration_delay = var.alb_deregistration_delay
+  #   alb_interval = var.alb_interval
+  #   alb_healthcheck_path = var.alb_healthcheck_path
+  #   alb_healthy_threshold = var.alb_healthy_threshold
+  #   alb_unhealthy_threshold = var.alb_unhealthy_threshold
+  #   alb_listner_port = var.alb_listner_port
+  #   tags = var.tags
+  # }
 #Route 53    #api.awsphani.tk
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"

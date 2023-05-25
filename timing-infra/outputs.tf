@@ -33,12 +33,13 @@ output "rds_endpoint" {
     value = module.rds.rds_endpoint
   
 }
-output "app_target_group_arn" {
-  value = module.alb.app_target_group_arn
-}
+
 output "app_lb_dns_name" {
-  value = module.alb.app_lb_dns_name
+  value = module.app_alb.lb_dns_name
 }
-output "lb_zone_id" {
-  value = module.alb.lb_zone_id
+# output "lb_zone_id" {
+#   value = module.alb.lb_zone_id
+# }
+output "app_target_group_arns" {
+  value = module.app_alb.target_group_arns
 }

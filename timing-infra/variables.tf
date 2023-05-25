@@ -52,17 +52,17 @@ variable "db_name" {
   default = "timing"
 }
 variable "instance_type" {
-  default = "db.t2.micro"
+  default = "db.t4g.micro"
 }
 variable "identifier" {
   default = "timing"
 }
 variable "engine" {
-  default = "mysql"
+  default = "postgres"
 }
-variable "engine_version" {
-  default = "8.0.32"
-}
+# variable "engine_version" {
+#   default = "14.7-R1"
+# }
 variable "rds_username" {
   default = "phani"
 }
@@ -107,44 +107,47 @@ variable "app_alb_ingress_cidr" {
 variable "app_alb_name" {
   default = "timing-app"
 }
- 
-variable "create_security_group" {
-  default = "false"
-}
-variable "alb_name_prefix" {
-  default = "timing"
-}
-variable "alb_backend_protocol" {
-  default = "HTTP"
-}
-variable "alb_backend_port" {
-  default = "80"
-}
-variable "alb_target_type" {
-  default = "ip"
-}
-variable "alb_deregistration_delay" {
-  default = "10"
-}
-variable "alb_interval" {
- default = "30"
-}
-variable "alb_healthcheck_path" {
-  default = "/health"
-}
-variable "alb_healthy_threshold" {
-  default = "3"
-}
-variable "alb_unhealthy_threshold" {
-  default = "3"
-}
-variable "alb_listner_port" {
-  default = "80"
-}
 variable "app_alb_tags" {
-  type = map
+  type = map(string)
   default = {}
 }
+# variable "create_security_group" {
+#   default = "false"
+# }
+# variable "alb_name_prefix" {
+#   default = "timing"
+# }
+# variable "alb_backend_protocol" {
+#   default = "HTTP"
+# }
+# variable "alb_backend_port" {
+#   default = "80"
+# }
+# variable "alb_target_type" {
+#   default = "ip"
+# }
+# variable "alb_deregistration_delay" {
+#   default = "10"
+# }
+# variable "alb_interval" {
+#  default = "30"
+# }
+# variable "alb_healthcheck_path" {
+#   default = "/health"
+# }
+# variable "alb_healthy_threshold" {
+#   default = "3"
+# }
+# variable "alb_unhealthy_threshold" {
+#   default = "3"
+# }
+# variable "alb_listner_port" {
+#   default = "443"
+# }
+# variable "app_alb_tags" {
+#   type = map
+#   default = {}
+# }
 variable "zone_name" {
   default = "awsphani.tk"
   
