@@ -43,3 +43,7 @@ output "app_lb_dns_name" {
 output "app_target_group_arns" {
   value = module.app_alb.target_group_arns
 }
+
+# output "zone_id" {
+#   value = module.hosted_zone.zone_id
+# }

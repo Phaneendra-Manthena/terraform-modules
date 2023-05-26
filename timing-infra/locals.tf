@@ -8,12 +8,18 @@ locals {
   db_subnet_group_name = module.vpc.db_subnet_group_name
   ecs_cluster_id = module.ecs_cluster.ecs_cluster_id
   app_alb_security_group_id = module.app_alb_sg.security_group_id
+  web_alb_security_group_id = module.web_alb_sg.security_group_id
   private_subnet_ids = module.vpc.private_subnet_ids
    public_subnet_ids = module.vpc.public_subnet_ids
    rds_endpoint = module.rds.rds_endpoint
    app_target_group_arn = module.app_alb.target_group_arns
+   web_target_group_arn = module.web_alb.target_group_arns
    api_app_lb_dns_name = module.app_alb.lb_dns_name
+   web_app_lb_dns_name = module.web_alb.lb_dns_name
    api_alb_zone_id = module.app_alb.lb_zone_id
+   web_alb_zone_id = module.web_alb.lb_zone_id
+  #  zone_id = module.hosted_zone.zone_id
+  
 
 }
    

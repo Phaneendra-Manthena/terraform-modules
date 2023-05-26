@@ -83,17 +83,39 @@ variable "ecs_log_group_name" {
 variable "app_alb_security_group_name" {
   default = "timing-alb"
 }
+variable "web_alb_security_group_name" {
+  default = "timing-web"
+}
 variable "app_alb_security_group_description" {
   default = "This is used for application ALB"
 }
+variable "web_alb_security_group_description" {
+  default = "This is used for web ALB"
+}
 variable "app_alb_ingress_cidr" {
   default = [
+    # {
+    #   from_port = "80"
+    #   to_port = "80"
+    #   cidr_block = "0.0.0.0/0"
+    #   description = "Opening 80 to internet"
+    # },
     {
-      from_port = "80"
-      to_port = "80"
+      from_port = "443"
+      to_port = "443"
       cidr_block = "0.0.0.0/0"
-      description = "Opening 80 to internet"
-    },
+      description = "Opening 443 to internet"
+    }
+  ]
+}
+variable "web_alb_ingress_cidr" {
+  default = [
+    # {
+    #   from_port = "80"
+    #   to_port = "80"
+    #   cidr_block = "0.0.0.0/0"
+    #   description = "Opening 80 to internet"
+    # },
     {
       from_port = "443"
       to_port = "443"
@@ -106,6 +128,9 @@ variable "app_alb_ingress_cidr" {
 
 variable "app_alb_name" {
   default = "timing-app"
+}
+variable "web_alb_name" {
+  default = "timing-web"
 }
 variable "app_alb_tags" {
   type = map(string)
@@ -148,10 +173,19 @@ variable "app_alb_tags" {
 #   type = map
 #   default = {}
 # }
+variable "domain_name" {
+  default = "awsphani.tk"
+}
 variable "zone_name" {
   default = "awsphani.tk"
   
 }
 variable "api_alb_record_name" {
   default = "api"
+}
+variable "web_alb_record_name" {
+  default = "web"
+}
+variable "cdn_alb_record_name" {
+  default = "cdn"
 }

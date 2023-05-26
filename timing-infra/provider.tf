@@ -14,3 +14,7 @@ provider "aws" {
 #     region = "us-east-1"    
 #   }
 # }
+# provider "aws" {    # If we to create two providers we use alias
+#   region = "ap-south-1"
+#   alias = "ap-south-1-cdn"
+# }

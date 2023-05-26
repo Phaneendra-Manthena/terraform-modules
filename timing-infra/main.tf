@@ -60,6 +60,17 @@ module "vpc" {
     tags = var.tags
     ingress_cidr = var.app_alb_ingress_cidr
   }
+module "web_alb_sg" {
+    source = "../modules/security_group"
+    vpc_id = local.vpc_id
+    security_group_name = var.web_alb_security_group_name
+    security_group_description = var.web_alb_security_group_description
+    tags = merge(
+      var.tags,
+      {Name = "timing-web"}
+    )
+    ingress_cidr = var.web_alb_ingress_cidr
+  }
 
 
   # module "alb" {
@@ -83,6 +94,10 @@ module "vpc" {
   #   tags = var.tags
   # }
 #Route 53    #api.awsphani.tk
+# module "hosted_zone" {
+#   source = "../modules/route53 hosted zone"
+#   domain_name = var.domain_name
+# }
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
   version = "~> 2.0"
@@ -99,5 +114,31 @@ module "records" {
       }
     }
   ]
+}
+
+module "web_alb_records" {
+  source  = "terraform-aws-modules/route53/aws//modules/records"
+  version = "~> 2.0"
+
+  zone_name = var.zone_name
+
+  records = [
+    {
+      name    = var.web_alb_record_name
+      type    = "A"
+      alias   = {
+        name    = local.web_app_lb_dns_name
+        zone_id = local.web_alb_zone_id
+      }
+    },
+    {
+      name    = var.cdn_alb_record_name
+      type    = "A"
+      alias   = {
+        name    = module.cdn.cloudfront_distribution_domain_name
+        zone_id = module.cdn.cloudfront_distribution_hosted_zone_id
+      }
+    }     
+  ]  
 }
   
